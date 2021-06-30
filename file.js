@@ -267,16 +267,21 @@ let closeModall = document.querySelector('#overlay')
 closeModall.addEventListener('click', () => {
 	let openModa = document.querySelector('.showsummary');
 	openModa.style.display = 'none';
+	closeit ()
 })
 let closedBtn = document.querySelector('.modalClose');
 closedBtn.addEventListener('click', () => {
 	let openModa = document.querySelector('.showsummary');
 	openModa.style.display = 'none';
+	closeit ()
 })
 
 //let us get the table tr so that we can get it's item
 
-
+function closeit () {
+	alert('Window closed.');
+	document.location.reload();
+}
 
 
 
