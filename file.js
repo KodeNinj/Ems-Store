@@ -175,13 +175,11 @@ paymentBtn.addEventListener('click', (e) => {
 	let table2 = document.querySelector('#table2 tbody');
 let ourNewTable = document.createElement('tbody');
 	ourNewTable.innerHTML = ourTable;
-	console.log(ourNewTable)
 	ourNewTable = ourNewTable.rows;
 
 	for(let d= 0; d < ourNewTable.length ; d++){
 		let itemName = ourNewTable[d].children[0].innerText
 		let quatity = ourNewTable[d].children[2].innerText
-		console.log(quatity)
 		let price = ourNewTable[d].children[1].innerText
 		let table3 = document.createElement('tr');
 		table3.innerHTML = `
@@ -190,7 +188,6 @@ let ourNewTable = document.createElement('tbody');
 	
 		`
 		table2.appendChild(table3)
-		console.log(table2)
 	}
 	//variable declaration
 	let userName = document.querySelector('#username')
@@ -263,6 +260,7 @@ function payWithPaystack() {
 
 
 //SUMMARY MODAL
+
 let closeModall = document.querySelector('#overlay')
 closeModall.addEventListener('click', () => {
 	let openModa = document.querySelector('.showsummary');
@@ -289,9 +287,12 @@ function closeit () {
 
 
 function popUpModal() {
+	
 	let openModa = document.querySelector('.showsummary');
 	openModa.style.display = 'block';
-
+	let username = document.querySelector('#username').value;
+	let message = document.querySelector('.summaryMessage');
+	message.innerText = 'Thank you ' + username + ' for patronizing us';
 }
 
 
