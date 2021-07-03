@@ -92,10 +92,7 @@ nav {
 }
  /**MEDIA QUERY FOR THE HERO SECTION RESPONSIVENESS*/
 @media screen and (max-width: 1200px){
-  body{
-    overflow-x: hidden;
-    width: 100%;
-  }
+ 
   h1{
     font-size: 60px;
 
@@ -104,12 +101,8 @@ nav {
     display: flex;
     flex-direction: column-reverse;
     text-align: center;
-    justify-content: center;
   }
-  .heroRight img {
-    margin: 4.5% 0 0 0;
-    width: 55%;
-  }
+ 
   .heroLeft{
     margin: 0;
     margin-top: -50px;
@@ -117,10 +110,10 @@ nav {
   }
   .hero button{
     width: 60%;
+    margin: 0;
     margin-left: 20%;
     font-size: 30px;
     padding: 20px;
-    margin-top: -150px;
   }
 }
 
@@ -558,14 +551,15 @@ table {
 }
 .containerBg {
   width: 50%;
-  min-height: 50vh;
-  overflow-y: auto;
+  height: 70vh;
+  overflow-y: scroll;
   background: white;
-  position: relative;
   padding-bottom: 40px;
   text-align: center;
+  position: relative;
+  z-index: 2;
   text-transform: uppercase;
-  margin: 25vh 25%;
+  margin: 10vh 25%;
   padding: 20px;
 }
 .mainSummary i {
@@ -604,10 +598,18 @@ table {
   .mainSummary i {
     color: white;
   }
+
   .mainSummary button{
-    bottom: 10%;
-    left: 0;
-    margin-left: 20%;
-    position: absolute;
+    min-width: 60%;
+    margin: 20% 10px;
   }
+}
+
+/**show and hide btn for the addtocart and remove from cart*/
+.show{
+  display: block;
+}
+.hide{
+  display: none;
+  
 }
