@@ -1,3 +1,10 @@
+//CORRECTION: 
+//I couldn't add the remove from cart function to the main section. 
+//I even try to use two buttons and hide/show upon clicking but its not working the way i want. 
+//Also, there is issue i'm facing with paystack or maybe it's my browser. It is reloading instead of opening the paystack modal. there will be an error/warning on the console concerning same-site= lax or so
+//other corrections has been implemented.
+
+
 let cartModal = document.querySelector('.cartModal');
 let cart = document.querySelector('#cart');
 let cart1 = document.querySelector('#cart span');
