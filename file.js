@@ -174,8 +174,8 @@ paymentBtn.addEventListener('click', (e) => {
 		alert('add a product to cart before you proceed to payout')
 	}
 	
-	if (userName.className == 'correctInput' && EmailValue.className == 'correctInput' && phoneNumber.className == 'correctInput' && amount.value != 0) {
-		payWithPaystack()
+	else if (userName.className == 'correctInput' && EmailValue.className == 'correctInput' && phoneNumber.className == 'correctInput' && amount.value != 0) {
+		payWithPaystack();
 	}else{
 		alert('add your details before you checkout')
 		e.preventDefault()
