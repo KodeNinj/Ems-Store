@@ -9,13 +9,13 @@ let theTable = document.querySelector('table');
 
 
 
-//MODAL EVENTS
+//SUMMARY MODAL EVENTS
 cart.addEventListener('click', () => {
 	cartModal.classList.add('active')
 })
 closeModal.addEventListener('click', () => {
 	cartModal.classList.remove('active')
-})
+})	
 let cartModal2 = document.querySelector('.overlay');
 cartModal2.addEventListener('click', () => {
 	cartModal.classList.remove('active')
@@ -27,18 +27,20 @@ for (let i = 0; i < addToCartBtn.length; i++) {
 	addToCartBtn[i].addEventListener('click', () => {
 		addToCartBtn[i].classList.add('active')
 		addToCartBtn[i].textContent = 'Added to cart';
+		
 		if (addToCartBtn[i].classList.contains('active')) {
 			addToCartBtn[i].disabled = true
 		}
-
+		
 	})
 }
-
-//the add to cart btn
+ 	
+ //the add to cart btn
 for (let i = 0; i < addToCartBtn.length; i++) {
 	addToCartBtn[i].addEventListener('click', addtoCart)
 
 }
+
 //THIS FUNCTION WILL LOOP THROUGH THE BUTTON AND SELECT THE NAME AND PRICE OF ITEMS
 function addtoCart(e) {
 	let btn = e.target;
@@ -61,10 +63,7 @@ function addtoCart(e) {
 
 	let ourTable = document.querySelector('#table  #body');
 	ourTable.appendChild(itemTR);
-
-	let cartNumber = ourTable.rows.length;
-	let ourCart = document.querySelector('#cartNumberSpan')
-	ourCart.innerText = cartNumber;
+	updateCartNumber();
 	////////////////////////////////////////////
 	
 	//the quantity of the product needs to be dealt with
@@ -115,7 +114,7 @@ function updateQuantity(e) {
 //the final total price to pay
 function amountToPayOut() {
 	let total = 0;
-	//pick the content inthe sub total field on our modal 
+	
 	//pick the class name of the sub total
 	let totalPrice = document.getElementsByClassName('productPrice');
 	//loop through every every
@@ -130,13 +129,13 @@ function amountToPayOut() {
 	}
 }
 
-//the function that controls the red trash button which remove an item from the list
+//the function that controls the trash button which remove an item from the list
 
 function removeMe(e) {
 	let trashBtn = e.target;
 	let trashBtn_parent = trashBtn.parentElement.parentElement;
 	trashBtn_parent.remove()
-	let ourTable2 = document.querySelector('table > tbody');
+	let ourTable2 = document.querySelector('#table > tbody');
 	let number = ourTable2.rows.length
 	let ourCart = document.querySelector('#cartNumberSpan')
 	ourCart.innerText = number;
@@ -156,13 +155,8 @@ function removeMe(e) {
 		let tbody = document.querySelector('tbody');
 		tbody.innerHTML = '';
 		let ourTable2 = document.querySelector('table > tbody');
-		let number1 = ourTable2.rows.length
-		let ourCart = document.querySelector('#cartNumberSpan')
-		ourCart.innerText = number1;
-		if (theTable.rows.length <= 1) {
-			let updateTotal = document.querySelector('.totalPriceToPay');
-			updateTotal.innerText = '$' + 0;
-		}
+		updateCartNumber()
+		
 
 
 	})
@@ -170,97 +164,28 @@ function removeMe(e) {
 
 
 paymentBtn.addEventListener('click', (e) => {
-	let ourTable = document.querySelector('#table tbody').innerHTML;
-	
-	let table2 = document.querySelector('#table2 tbody');
-let ourNewTable = document.createElement('tbody');
-	ourNewTable.innerHTML = ourTable;
-	ourNewTable = ourNewTable.rows;
 
-	for(let d= 0; d < ourNewTable.length ; d++){
-		let itemName = ourNewTable[d].children[0].innerText
-		let quatity = ourNewTable[d].children[2].innerText
-		let price = ourNewTable[d].children[1].innerText
-		let table3 = document.createElement('tr');
-		table3.innerHTML = `
-		<td>${itemName}</td>
-		<td> ${price} each</td>
-	
-		`
-		table2.appendChild(table3)
-	}
 	//variable declaration
 	let userName = document.querySelector('#username')
 	let EmailValue = document.querySelector('#Email')
 	let phoneNumber = document.querySelector('#phonenumber')
 	let amount = document.querySelector('#totalAmount')
-
-	if (userName.value == '') {
-		userName.className = 'wrongInput';
-		alert('username cannot be empty')
-		e.preventDefault();
-	}
-	if (userName.value.length <= 6) {
-		userName.className = 'wrongInput';
-		alert('username must be greater than 6 characters')
-		e.preventDefault();
-	}
-	if (userName.value.length > 6) {
-		userName.className = 'correctInput';
-		e.preventDefault()
-	}
-	if (EmailValue.value == '') {
-		EmailValue.className = 'wrongInput'
-		e.preventDefault();
-	}
-
-	if (EmailValue.value.length > 4) {
-		EmailValue.className = 'correctInput'
-		e.preventDefault();
-	}
-	if (phoneNumber.value.length < 11) {
-		phoneNumber.className = 'wrongInput'
-		alert('phone numbermust be 11 digit')
-		e.preventDefault()
-	}
-	if (phoneNumber.value.length > 10) {
-		phoneNumber.className = 'correctInput'
-		e.preventDefault()
-	}
 	if (amount.value == 0) {
-		alert('add a [product to cart before you proceed to payout')
+		alert('add a product to cart before you proceed to payout')
 	}
+	
 	if (userName.className == 'correctInput' && EmailValue.className == 'correctInput' && phoneNumber.className == 'correctInput' && amount.value != 0) {
 		payWithPaystack()
+	}else{
+		alert('add your details before you checkout')
+		e.preventDefault()
 	}
 	
 
 })
 
 
-
-function payWithPaystack() {
-	let handler = PaystackPop.setup({
-		key: 'pk_test_559ed4e475d2ae6faf647de9b8e491f039987619', // Replace with your public key
-		email: document.getElementById("Email").value,
-		amount: document.getElementById("totalAmount").value * 100,
-		ref: '' + Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
-		// label: "Optional string that replaces customer email"
-		onClose: function () {
-			alert('Window closed.');
-		},
-		callback: function (response) {
-			cartModal.classList.remove('active');
-			popUpModal();
-		}
-	});
-	handler.openIframe();
-
-}
-
-
-//SUMMARY MODAL
-
+//SUMMARY MODAL CLOSING ABRACADABRA
 let closeModall = document.querySelector('#overlay')
 closeModall.addEventListener('click', () => {
 	let openModa = document.querySelector('.showsummary');
@@ -274,26 +199,153 @@ closedBtn.addEventListener('click', () => {
 	closeit ()
 })
 
-//let us get the table tr so that we can get it's item
+function getInputValue(){
+	let ourTable = document.querySelector('#table tbody').innerHTML;
+	
+	let table2 = document.querySelector('#table2 tbody');
+let ourNewTable = document.createElement('tbody');
+	ourNewTable.innerHTML = ourTable;
+	ourNewTable = ourNewTable.rows;
 
+	 
+		let inputfield = document.querySelectorAll('#table tbody #numPlus')
+		for(let e = 0; e<inputfield.length; e++){
+			let td = document.createElement('td');
+			td  = inputfield[e].value
+			 
+		
+		let itemName = ourNewTable[e].children[0].innerText
+		 
+		 
+		let table3 = document.createElement('tr');
+		table3.innerHTML = `
+		<td>${itemName}</td>
+		<td>${td}</td>
+	
+		`
+		table2.appendChild(table3)
+	}
+
+}
+function resetBtn(){
+	for (let i = 0; i < addToCartBtn.length; i++) {
+		
+			addToCartBtn[i].classList.remove('active')
+			addToCartBtn[i].textContent = 'Add to cart';
+			
+			
+				addToCartBtn[i].disabled = false
+			}
+			
+		
+	}
+
+//function that is responsible for clearing the cart modal upon closing the summary modal. It also update the number of items in the cart 
 function closeit () {
-	alert('Window closed.');
-	document.location.reload();
+	let username = document.querySelector('#username').value;
+	alert(`Adios, ${username}`);
+	clearCart();
+	updateCartNumber()
+	resetBtn()
 }
 
-
-
-
-
-
+//function that deals with the opening of the summary modal
 function popUpModal() {
-	
 	let openModa = document.querySelector('.showsummary');
 	openModa.style.display = 'block';
+	getInputValue()
 	let username = document.querySelector('#username').value;
 	let message = document.querySelector('.summaryMessage');
 	message.innerText = 'Thank you ' + username + ' for patronizing us';
+	clearCart();
 }
 
 
 
+//the functions for all the form onBlur 
+//1. username
+function userNameField(){
+	let userName = document.querySelector('#username');
+	if (userName.value == '') {
+		userName.className = 'wrongInput';
+		alert('username cannot be empty')
+	
+	}else
+	if (userName.value.length <= 6) {
+		userName.className = 'wrongInput';
+		alert('username must be greater than 6 characters')
+	
+	}else
+	if (userName.value.length > 6) {
+		userName.className = 'correctInput';
+		
+	}
+}
+//2.Email
+function emailField(){
+	let EmailValue = document.querySelector('#Email')
+	if (EmailValue.value == '') {
+		EmailValue.className = 'wrongInput'
+		alert('Email cannot be empty');
+	}else if (EmailValue.value.includes('.com') && EmailValue.value.includes('@') ) {
+		EmailValue.className = 'correctInput'
+	}else{
+		
+		alert('Hey Love, Your email seems to have a slight error.')
+		EmailValue.className = 'wrongInput'
+	}
+}
+//3. phone Number
+function phoneField(){
+	let phoneNumber = document.querySelector('#phonenumber');
+	if (phoneNumber.value == ''){
+		alert('Hey! Don\'t forget to add your Phone number')
+		phoneNumber.className = 'wrongInput'
+	}else
+	if (phoneNumber.value.length < 11) {
+		phoneNumber.className = 'wrongInput'
+		alert('phone numbermust be 11 digit')
+	
+	}
+	if (phoneNumber.value.length > 10) {
+		phoneNumber.className = 'correctInput'
+		
+	}
+}
+//the code copied from paystack 
+function payWithPaystack() {
+	let handler = PaystackPop.setup({
+		key: 'pk_test_559ed4e475d2ae6faf647de9b8e491f039987619', // Replace with your public key
+		email: document.getElementById("Email").value,
+		amount: document.getElementById("totalAmount").value * 100,
+		ref: '' + Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+		// label: "Optional string that replaces customer email"
+		onClose: function () {
+			alert('Window closed.');
+		},
+		callback: function (response) {
+			cartModal.classList.remove('active');
+			popUpModal();
+			getInputValue()
+		}
+	});
+	handler.openIframe();
+
+}
+
+//function that clear the cart after closing the summary modal
+function clearCart(){
+	//get the cart table > tbody
+	let ourTable = document.querySelector('#table > tbody')
+	//set te tbody to empty
+	ourTable.innerHTML = ''
+}
+
+//this function will track all the number of items inthe cart modal
+function updateCartNumber(){
+	//the cart number
+	let ourTable = document.querySelector('#table  #body');
+	let cartNumber = ourTable.rows.length;
+	let ourCart = document.querySelector('#cartNumberSpan')
+	ourCart.innerText = cartNumber;
+}
