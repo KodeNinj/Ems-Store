@@ -66,7 +66,10 @@
                 </div>
                 <div class="productName">
                     <p class="name">ASUS LAPTOP</p>
-                    <button class="addTOcart">ADD TO CART</button>
+                
+                    <button class="removefromcart hide" >Remove</button>
+                    <button class="addTOcart" >ADD TO CART</button>
+               
                 </div>
                 </div>
             </div>
@@ -82,6 +85,7 @@
             </div>
             <div class="productName">
                 <p class="name">DELL LAPTOP</p>
+                <button class="removefromcart hide" >Remove</button>
                 <button class="addTOcart">ADD TO CART</button>
             </div>
             </div>
@@ -98,6 +102,7 @@
             </div>
             <div class="productName">
                 <p class="name">DELL PRO LAPTOP</p>
+                <button class="removefromcart hide" >Remove</button>
                 <button class="addTOcart">ADD TO CART</button>
             </div>
             </div>
@@ -114,6 +119,7 @@
             </div>
             <div class="productName">
                 <p class="name">BUSINESS LAPTOP</p>
+                <button class="removefromcart hide" >Remove</button>
                 <button class="addTOcart">ADD TO CART</button>
             </div>
             </div>
@@ -130,6 +136,7 @@
             </div>
             <div class="productName">
                 <p class="name">CHUWI LAPTOP</p>
+                <button class="removefromcart hide" >Remove</button>
                 <button class="addTOcart">ADD TO CART</button>
             </div>
             </div>
@@ -146,6 +153,7 @@
             </div>
             <div class="productName">
                 <p class="name">HP SPECTRE LAPTOP</p>
+                <button class="removefromcart hide" >Remove</button>
                 <button class="addTOcart">ADD TO CART</button>
             </div>
             </div>
@@ -162,6 +170,7 @@
             </div>
             <div class="productName">
                 <p class="name">NAIJA LAPTOP</p>
+                <button class="removefromcart hide" >Remove</button>
                 <button class="addTOcart">ADD TO CART</button>
             </div>
             </div>
@@ -178,6 +187,7 @@
             </div>
             <div class="productName">
                 <p class="name">DAN LAPTOP</p>
+                <button class="removefromcart hide" >Remove</button>
                 <button class="addTOcart">ADD TO CART</button>
             </div>
             </div>
@@ -194,6 +204,7 @@
             </div>
             <div class="productName">
                 <p class="name">MS LAPTOP</p>
+                <button class="removefromcart hide" >Remove</button>
                 <button class="addTOcart">ADD TO CART</button>
             </div>
             </div>
@@ -210,6 +221,7 @@
             </div>
             <div class="productName">
                 <p class="name">SURFACE LAPTOP</p>
+                <button class="removefromcart hide" >Remove</button>
                 <button class="addTOcart">ADD TO CART</button>
             </div>
             </div>
@@ -251,9 +263,9 @@
                 <!--the user details-->
                 <h3>Enter Your Details To Checkout</h3>
                 <form action="">
-                <input type="text" placeholder="YOUR NAME" id="username"><br>
-                <input type="email" name="Email" placeholder="YOUR EMAIL" id="Email"><br>
-                <input type="tel" placeholder="YOUR PHONE NUMBER" id="phonenumber">
+                <input type="text" placeholder="YOUR NAME" id="username" onblur="userNameField()"><br>
+                <input type="email" name="Email" placeholder="YOUR EMAIL" id="Email" onblur="emailField()"><br>
+                <input type="number" placeholder="YOUR PHONE NUMBER" id="phonenumber" onblur="phoneField()">
                 <input type="tel" value ="0" disabled id="totalAmount">
                 <div class="CartValue">
                     <h4><br> Amount To Be Paid</h4>
@@ -280,13 +292,16 @@
    <section class="showsummary">
         <div class="containerBg">
             <div class="mainSummary">
-                <h2>than you for  your purchase</h2>
+                <h2 class="summaryMessage">thank you for  your purchase</h2>
                 <h3><i class="fa fa-check-circle"></i></h3>
                     <h3>SUMMARY</h3>
                     <table id="table2">
                         
                         <tbody>
-                                
+                            <tr>
+                                <td>Product Name</td>
+                                <td>Quantity</td>
+                            </tr>    
                             
                         </tbody>
                     </table>
