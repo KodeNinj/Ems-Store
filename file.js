@@ -16,7 +16,7 @@ let theTable = document.querySelector('table');
 
 
 
-//SUMMARY MODAL EVENTS
+//Cart MODAL EVENTS
 cart.addEventListener('click', () => {
 	cartModal.classList.add('active')
 })
@@ -39,7 +39,9 @@ for (let i = 0; i < addToCartBtn.length; i++) {
 			addToCartBtn[i].disabled = true
 		}
 		
+		
 	})
+
 }
  	
  //the add to cart btn
@@ -154,20 +156,19 @@ function removeMe(e) {
 		ourInputValue.value = 0
 	}
 
-
+}
 
 	//the clear cart btn
 	let clearcartBtn = document.querySelector('#clearCart')
 	clearcartBtn.addEventListener('click', () => {
-		let tbody = document.querySelector('tbody');
+		let tbody = document.querySelector('#table tbody');
 		tbody.innerHTML = '';
-		let ourTable2 = document.querySelector('table > tbody');
 		updateCartNumber()
 		
 
 
 	})
-}
+
 
 
 paymentBtn.addEventListener('click', (e) => {
