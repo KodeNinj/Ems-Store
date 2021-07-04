@@ -267,20 +267,25 @@ function popUpModal() {
 //the functions for all the form onBlur 
 //1. username
 function userNameField(){
+	let userNameText = document.querySelector('#usernameText')
+	let EmailText = document.querySelector('#EmailText')
+	let NumberText = document.querySelector('#NumberText')
 	let userName = document.querySelector('#username');
 	if (userName.value == '') {
 		userName.className = 'wrongInput';
-		alert('username cannot be empty')
+		userNameText.innerText = 'username cannot be empty'
+		userNameText.style.visibility = "visible"
 	
 	}else
 	if (userName.value.length <= 6) {
 		userName.className = 'wrongInput';
-		alert('username must be greater than 6 characters')
-	
+		userNameText.innerText = 'username must be greater than 6 characters'
+		userNameText.style.visibility = "visible"
 	}else
 	if (userName.value.length > 6) {
 		userName.className = 'correctInput';
-		
+		userNameText.innerText = 'Perfect!'
+		userNameText.style.visibility = "visible"
 	}
 }
 //2.Email
@@ -288,12 +293,16 @@ function emailField(){
 	let EmailValue = document.querySelector('#Email')
 	if (EmailValue.value == '') {
 		EmailValue.className = 'wrongInput'
-		alert('Email cannot be empty');
+		EmailText.innerText = 'Email cannot be empty'
+		EmailText.style.visibility = "visible"
 	}else if (EmailValue.value.includes('.com') && EmailValue.value.includes('@') ) {
 		EmailValue.className = 'correctInput'
+		EmailText.innerText = 'Perfect!'
+		EmailText.style.visibility = "visible"
 	}else{
 		
-		alert('Hey Love, Your email seems to have a slight error.')
+		EmailText.innerText = 'Enter a valid Email'
+		EmailText.style.visibility = "visible"
 		EmailValue.className = 'wrongInput'
 	}
 }
@@ -301,16 +310,20 @@ function emailField(){
 function phoneField(){
 	let phoneNumber = document.querySelector('#phonenumber');
 	if (phoneNumber.value == ''){
-		alert('Hey! Don\'t forget to add your Phone number')
+		NumberText.innerText = 'Phone number field cannot be empty'
+		NumberText.style.visibility = "visible"
 		phoneNumber.className = 'wrongInput'
 	}else
 	if (phoneNumber.value.length < 11) {
 		phoneNumber.className = 'wrongInput'
-		alert('phone numbermust be 11 digit')
+		NumberText.innerText = 'That\'s definitely a wrong number!'
+		NumberText.style.visibility = "visible"
 	
 	}
 	if (phoneNumber.value.length > 10) {
 		phoneNumber.className = 'correctInput'
+		NumberText.innerText = 'Perfect!'
+		NumberText.style.visibility = "visible"
 		
 	}
 }
