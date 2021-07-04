@@ -199,12 +199,14 @@ closeModall.addEventListener('click', () => {
 	let openModa = document.querySelector('.showsummary');
 	openModa.style.display = 'none';
 	closeit ()
+	document.location.reload()
 })
 let closedBtn = document.querySelector('.modalClose');
 closedBtn.addEventListener('click', () => {
 	let openModa = document.querySelector('.showsummary');
 	openModa.style.display = 'none';
 	closeit ()
+	document.location.reload()
 })
 
 function getInputValue(){
@@ -343,6 +345,7 @@ function payWithPaystack() {
 		// label: "Optional string that replaces customer email"
 		onClose: function () {
 			alert('Window closed.');
+			
 		},
 		callback: function (response) {
 			cartModal.classList.remove('active');
@@ -351,7 +354,6 @@ function payWithPaystack() {
 		}
 	});
 	handler.openIframe();
-
 }
 
 //function that clear the cart after closing the summary modal
