@@ -488,6 +488,7 @@ table {
 }
 .wrongInput {
   border-collapse: collapse;
+ 
   background-color: red;
   color: white;
   border: 4px solid white;
@@ -612,4 +613,9 @@ table {
 .hide{
   display: none;
   
+}
+.userDetails span{
+  margin-left: 0;
+  visibility: hidden;
+  color: yellow;
 }
