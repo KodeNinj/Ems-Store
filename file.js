@@ -171,15 +171,21 @@ paymentBtn.addEventListener('click', (e) => {
 	let EmailValue = document.querySelector('#Email')
 	let phoneNumber = document.querySelector('#phonenumber')
 	let amount = document.querySelector('#totalAmount')
+	let ourText = document.querySelector('#checkoutText')
 	if (amount.value == 0) {
-		alert('add a product to cart before you proceed to payout')
+		
+		ourText.innerText = 'Add a product before you proceed'
+		ourText.style.visibility = 'visible'
 	}
 	
 	else if (userName.className == 'correctInput' && EmailValue.className == 'correctInput' && phoneNumber.className == 'correctInput' && amount.value != 0) {
 		payWithPaystack();
+		ourText.innerText = 'Perfect!'
+		ourText.style.visibility = 'visible'
 		e.preventDefault()
 	}else{
-		alert('add your details before you checkout')
+		ourText.innerText = 'Add your details before you checkout'
+		ourText.style.visibility = 'visible'
 		e.preventDefault()
 	}
 	
